@@ -11,7 +11,6 @@ localtime=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
 str="\n任何使用问题请联系QQ:1102041547 程序当前版本V1.3\n%s 充值详情：\n"%(localtime)
 f= open("chargelog.txt","a")
 f.write(str)
-f.close() #记录帐号不存在日志
 cf = configparser.ConfigParser()
 cf.read("./config.ini") #配置文件获得数据库信息和账号信息
 secs = cf.sections()
@@ -37,20 +36,14 @@ for i in range(0,temp):
    if isFullGold==1: #判断是否将金元宝修改为20E
     cursor.execute("UPDATE account SET gold_coin = 2000000000, CHECKSUM = upper(CAST(md5(concat(CAST(account AS char CHARACTER SET utf8),CAST(PASSWORD AS char CHARACTER SET utf8),CAST(LPAD(CONV(privilege, 10, 16), 8, 0) AS char CHARACTER SET utf8),CAST(blocked_time AS char CHARACTER SET utf8),CAST(LPAD(CONV(gold_coin, 10, 16), 8, 0) AS char CHARACTER SET utf8),CAST(LPAD(CONV(silver_coin, 10, 16), 8, 0) AS char CHARACTER SET utf8),CAST(coin_password AS char CHARACTER SET utf8),CAST(unlock_coin_password_time AS char CHARACTER SET utf8),CAST(trade_lock_time AS char CHARACTER SET utf8),CAST(permit_ip AS char CHARACTER SET utf8),'ABCDEF')) AS CHAR))WHERE account = %s ;" ,(user_account[i][1]))
    db.commit()
-   str1="   帐号 %-8s 成功充值%s银元宝，当前银元宝为 %s\n"%(user_account[i][1],CHARGE_NUM,after_coin)
-   f= open("chargelog.txt","a")
-   f.write(str1)
-   f.close() #记录充值成功日志
+   str1=" 帐号 %-10s 成功充值%s银元宝，当前银元宝为 %s\n"%(user_account[i][1],CHARGE_NUM,after_coin) #记录充值成功日志
+   f.write(str1) 
   else:
-   str2="   帐号 %-8s 充值失败，当前银元宝为 %s\n"%(user_account[i][1],before_coin)
-   f= open("chargelog.txt","a")
+   str2=" 帐号 %-10s 充值失败，当前银元宝为 %s\n"%(user_account[i][1],before_coin) #记录因限额20E无法充值
    f.write(str2)
-   f.close() #记录因限额20E无法充值
  else:
-  str3="   帐号 %-8s 不存在，请检查配置文件\n"%(user_account[i][1])
-  f= open("chargelog.txt","a")
+  str3=" 帐号 %-10s 不存在，请检查配置文件\n"%(user_account[i][1]) #记录帐号不存在日志
   f.write(str3)
-  f.close() #记录帐号不存在日志
   break
 db.close()
-  
+f.close() 
