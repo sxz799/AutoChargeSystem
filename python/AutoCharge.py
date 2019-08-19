@@ -69,7 +69,7 @@ def DoTime(H,M): #定时函数
             if now.hour==H and now.minute==M:
               break
             # 不到时间就等55秒之后再次检测
-            time.sleep(31)
+            time.sleep(55)
         # 执行充值函数
         charge()
 def start():
