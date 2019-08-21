@@ -56,6 +56,7 @@ def charge_A():  # A级会员充值函数
    str=" 帐号 %-10s 不存在，请检查配置文件\n"%(user_account_A[i][1]) # 写记录帐号不存在日志
    write_log(str,"a")
    continue
+ cursor.close()
  db.close()
 
 def charge_B():  # B级会员充值函数
@@ -96,6 +97,7 @@ def charge_B():  # B级会员充值函数
    str=" 帐号 %-10s 不存在，请检查配置文件\n"%(user_account_B[i][1]) # 写记录帐号不存在日志
    write_log(str,"a")
    continue
+ cursor.close()
  db.close()
 
 def charge_C():  # C级会员充值函数
@@ -136,6 +138,7 @@ def charge_C():  # C级会员充值函数
    str=" 帐号 %-10s 不存在，请检查配置文件\n"%(user_account_C[i][1]) # 写记录帐号不存在日志
    write_log(str,"a")
    continue
+ cursor.close()
  db.close()
 
 def DoTime(H,M): #定时函数 H表示设定的小时，M为设定的分钟
@@ -155,7 +158,7 @@ def start():
  secs = cf.sections()
  H=cf.getint("charge_time", "H")
  M=cf.getint("charge_time", "M")
- welstr="欢迎使用自动定时充值系统，当前程序版本：v1.7\n有使用问题请联系青丝QQ:1102041547\n青丝接1.60、1.63架设，登录器制作，etc修改定制\n当前配置的充值时间为每天%d点%d分\n程序启动后可随时修改除时间外的配置信息\n"%(H,M)
+ welstr="欢迎使用自动定时充值系统，当前程序版本：v1.8\n有使用问题请联系青丝QQ:1102041547\n青丝接1.60、1.63架设，登录器制作，etc修改定制\n当前配置的充值时间为每天%d点%d分\n程序启动后可随时修改除时间外的配置信息\n"%(H,M)
  write_log(welstr,"a")  #写记录日志
  DoTime(H,M)
  
