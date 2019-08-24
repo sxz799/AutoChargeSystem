@@ -5,16 +5,15 @@ import pymysql
 import configparser
 import time
 import datetime
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+import importlib,sys 
+importlib.reload(sys)
 
 def write_log(str,mode): # 写记录日志函数，mode作为操作模式传入
  try:
   f= open("chargelog.txt",mode)
   f.write(str)
  except IOError:
-  print "Error: 没有找到文件或读取文件失败"
+  print ("Error: 没有找到文件或读取文件失败")
  else:
   f.close()
   
