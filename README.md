@@ -1,5 +1,5 @@
 # AutoChargeSystem
-author：sxz799
+ author：sxz799
 
 ## v1.2
 添加20E元宝限额判断
