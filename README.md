@@ -1,5 +1,17 @@
 # AutoChargeSystem
  author：sxz799
+## 使用说明
+1.打开config.ini根据提示进行配置,建议使用notepad++
+2.将本目录上传到服务器任意目录下
+3.赋予777权限
+    1.使用命令 chmod 777 -R AutoCharge
+    2.使用winscp选中目录右键点击属性 将0755改为0777 勾选下方循环设定组权限
+4.切换到AutoCharge目录 
+启动  sh start.sh
+停止  sh end.sh
+
+QQ:1102041547
+接开服、假设、修改etc
 
 ## v1.2
 添加20E元宝限额判断
